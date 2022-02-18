@@ -2,6 +2,9 @@
 Tracking my code
 # mycode (Project Title)
 I want to learn how to version control projects with Git
+
+I want to learn as well
+
 One Paragraph of your project description goes here. Describe what you're trying to do.
 What is the purpose of putting up this repo?
 
