@@ -1,0 +1,1 @@
+entry = {'sw-1': 'arista_eos', 'sw-2': 'arista_eos'}
