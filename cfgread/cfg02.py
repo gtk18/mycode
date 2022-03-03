@@ -11,6 +11,8 @@ configlist = configblog.splitlines()
 ## display list with no "\n"
 print(configlist)
 
+print(configlist(0,5,10,-1))
+
 ## Always close your file
 configfile.close()
 
