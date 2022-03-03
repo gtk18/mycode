@@ -41,4 +41,4 @@ ansible_ssh_pass=alta3
 [defaults]
 host_key_checking = False
 inventory = /home/student/mycode/inv/dev/hosts
-
+roles_path = /home/student/mycode/roles/
