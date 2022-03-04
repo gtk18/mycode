@@ -9,11 +9,11 @@ import csv
 
 #creating output files from Data Sets
 
-pokefile = open("pokedex.txt", "r")
+#pokefile = open("pokedex.txt", "r")
 
-print(pokefile.read())
+#print(pokefile.read())
 
-pokefile.close()
+#pokefile.close()
 
 totalDragons = 0
 totalUser = 0
