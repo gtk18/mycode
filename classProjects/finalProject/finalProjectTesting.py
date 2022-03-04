@@ -9,37 +9,46 @@ Created on Tue Mar  1 11:18:29 2022
 """Driving a simple game framework with
    a dictionary object | Alta3 Research"""
 #***************************************************
+
 import time
 import random
 import sys
 
 def main():
-    while True:
-        def showInstructions():
-            """Show the game instructions when called"""
+# =============================================================================
+#     ### user_input = input("What would you like to do? Game or Research?")
+#     ### if user_input = "Game"
+# =============================================================================
+    while True: #while condition is true, runs while loop
+        def showInstructions(): #defining function
+            """Calls the main instructions"""
             #print a main menu and the commands
             ('''
-            RPG Game
+           Text-Based Adventure Game
             ========
             Commands:
-              go [direction]
-              get [item]
+              go [direction]    example: go west
+              get [item]        example: get item
             ''')
-            # sys.stdout.write('Lets test how fast this types')
-            # sys.stdout.flush()
-            # openingString = "Lets see how slow these words print"
-            # for word in openingString.split():
-            #         print(word, end = ' ')
-            #         time.sleep(.5)
-        def endGame():
-            while True:
-                break
+# =============================================================================
+#             # sys.stdout.write('Lets test how fast this types')
+#             # sys.stdout.flush()
+#             # openingString = "Lets see how slow these words print"
+#             # for word in openingString.split():
+#             #         print(word, end = ' ')
+#             #         time.sleep(.5)
+# =============================================================================
+# =============================================================================
+#         def endGame():
+#             while True:
+#                 break
+# =============================================================================
             
-        def printSpaces(): #prints 10 spaces
+        def printSpaces(): #prints 15 spaces
             print("\n"*15)
             
-        def playAgain():
-            # currentRoom = 'Hall'
+        def playAgain(): #function to start game over at the main room
+            # currentRoom = 'Main Room'
             # print("Would you like to play again?")
             while True:
                 playerAction = input("Do you dare to try again? Yes/No? >>>")
@@ -49,46 +58,35 @@ def main():
                         # showInstructions()
                         print('here we go')
                         main()
-                            # clear20()        
-                                # main()
-                if playerAction.lower().strip() != "yes": #
-                        clear20()
-                        print("GOODBYE for now...")
+                if playerAction.lower().strip() != "yes": #does not matter how yes is typed or white spaces
+                        clear25()
+                        print("\033[1;31;11mGOODBYE\033[0;0m...for now...")
                         time.sleep(5)
-                        sys.exit()
-                        # endGame()
-            # while False:
-                # break
-                
-                
-        
-        
-        def showStatus():
-            """determine the current status of the player"""
-            #print the player's current status
+                        sys.exit() #calls the function from sys to exit out of program if answered no.
+                        
+        def showStatus(): #defined function that describes the current status of player
             print('-------------------------------')
-            print('-------------------------------')
-            print("\033[1;33;11mYou are standing in the \033[0;0m" + currentRoom +"\033[1;33;11m ... \033[0;0m")
+            print("\033[1;33;11mYou are standing in the \033[0;0m" + currentRoom +"\033[1;33;11m ... \033[0;0m") #print main words in yellow, [type,fg,bg]]
             #-------------------------------------------------
-            # Room Descriptions, aka room statuses
-            if currentRoom == 'Hall':
-                openSentence = "This hallway seems to smell. You don't remember how you got here, but you know you need to get out."
-                for word in openSentence.split():
-                    print(word, end = " ")
-                    time.sleep(.05)
+            # Room Descriptions, aka what room statuses
+            if currentRoom == 'Main Room': #if Main room then run this loop...
+                openSentence = "This Main Room smells funky. You don't remember how you got here, but you know you need to get out."
+                for word in openSentence.split(): #splits the string into a list[x,y,z]
+                    print(word, end = " ") #removes the default newline and prints one word after another
+                    time.sleep(.05) #adds a delay on the words being printed out. the higher the slower the words are printed
                 openSentence2 = "You notice that you can go east, west, or south. But the south looks completely dark."
-                for word in openSentence2.split():
+                for word in openSentence2.split():# same as above lines
                     print(word, end = " ")
-                    time.sleep(.05)
+                    time.sleep(.05) #delay of words
                 print()                
-                time.sleep(.5)
+                # time.sleep(.5) #delay before next loop
             if currentRoom == 'West Room':
                 print("The room is rather empty.")
                 print("But after scanning some time...you notice a cellar door on the floor in the corner...")
-                print("You can do down or east...")
+                print("You can do down or east.")
             if currentRoom == 'Kitchen' : 
                 print("You have made a grave mistake...")
-            if currentRoom == 'Dining Room' : 
+            if currentRoom == 'Laboratory' : 
                 print("This place looks like some sort of lab.")
                 print("You can go west or south.")
             if currentRoom == 'Back Room':
@@ -104,32 +102,48 @@ def main():
             if "item2" in rooms[currentRoom]:
                 print('You see a ' + rooms[currentRoom]['item2'])
             print("--------------------------------")  
-            print('--------------------------------')
-            
-            
-        def clear20():
-            print("\n"*20)
-        clear20()    
+                    
+        def clear25():
+            print("\n"*25)
+        clear25()    
         
-        #start the player in the Hall
-        currentRoom = 'Hall'
-        # print('\n')#; print( ' You  are standing in a narrow hallway. You see that you can go east, west, or south.')
-        #an inventory, which is initially empty
+        #start the player in the Main Room
+        currentRoom = 'Main Room'
+        # print('\n')#; print( ' You  are standing in a narrow Main Roomway. You see that you can go east, west, or south.')
+        
+        #starting inventory that is empty
         inventory = []
-        
-        #a dictionary linking a room to other rooms
+        #dictionary that links all rooms in one way or another
         rooms = {
         
-                    'Hall' : { 
+                    'Main Room' : { 
                           'south' : 'Kitchen',
-                          'east' : 'Dining Room',
+                          'east' : 'Laboratory',
                           'west' : "West Room",
                           'item' : 'key',
                           'item2' : 'lamp',
-                          
+                          # 'upstairs': 'Upstairs Hallway'
                         },
+# =============================================================================
+#                   'Upstairs Hallway' : { 
+#                         'downstairs' : 'Main Room'
+#                         'east': 'Main Bedroom'
+#                       },
+#                   'Main Bedroom' : { 
+#                        'east' : 'upstairs hallway'
+#                       },
+#                   'Spare Bedroom' : { 
+#                        'west' : 'upstairs hallway'
+#                       },
+#                         
+#                   'Attic' : { 
+#                        'west' : 'upstairs hallway
+#                       },
+# =============================================================================
+                        
+                       
                     'West Room' :{
-                        'east' : 'Hall',
+                        'east' : 'Main Room',
                         'item' : 'plate',
                         'down' : 'Cellar',
                         },
@@ -138,16 +152,16 @@ def main():
                         },
         
                     'Kitchen' : {
-                          'north' : 'Hall',
+                          'north' : 'Main Room',
                           'item' : 'monster',
                         },
-                    'Dining Room' : {
-                        'west' : 'Hall',
+                    'Laboratory' : {
+                        'west' : 'Main Room',
                         'south': 'Back Room',
                         'item' : 'potion',
                         },
                     'Back Room' :{
-                        'north' : 'Dining Room',
+                        'north' : 'Laboratory',
                     }
         
                  }
@@ -166,16 +180,15 @@ def main():
             next_action = ''
             while next_action == '':  
                 next_action = input('What do you want to do now? >')
-                clear20()
-            
-            # split allows an items to have a space on them
-            # get golden key is returned ["get", "golden key"]          
+                clear25()
+                             
             next_action = next_action.lower().split(" ", 1) # delimiter here is a space, and a max split of 1
-          
-            #if they type 'go' first
+            #if they type 'go' as their first action
             if next_action[0] == 'go':
-                # print(next_action) #added to view output
-                # print(next_action[1]) #added to view output as well
+# =============================================================================
+#                 # print(next_action) #added to view output
+#                 # print(next_action[1]) #added to view output as well
+# =============================================================================
                 #check that they are allowed wherever they want to go
                 if next_action[1] in rooms[currentRoom]:
                     #set the current room to the new room
@@ -192,17 +205,16 @@ def main():
                     #add the item to their inventory
                     inventory += [next_action[1]]
                     if next_action[1] == 'key':   #if item picked up is key, will print the next message...
-                        print("\033[1;36;11m The key glows as you pick it up... \033[0;0m")
-                    if next_action[1] == 'potion':
+                        print("\033[1;36;11m The key glows as you pick it up... \033[0;0m") #prints in light blue
+                    if next_action[1] == 'potion': #if second attribute is called this
                         print("*************")
                         # print("\033[1;36;11m The potion shakes in your hand and mysteriously starts to fill on it's own... \033[0;0m")
                         potionStory = "\033[1;36;11m The potion shakes in your hand and mysteriously starts to fill on it's own... \033[0;0m"
-                        for word in potionStory.split():
-                            print(word, end = " ")
+                        for word in potionStory.split(): #splits the string into separate items
+                            print(word, end = " ") #prints without new lines
                             time.sleep(.05)
                         time.sleep(3)
                         print('\n',"*************")
-                    #display a helpful message
                     print(next_action[1] + ' item taken!')
                     #delete the item from the room
                     del rooms[currentRoom]['item']
@@ -215,27 +227,27 @@ def main():
                     del rooms[currentRoom]['item2'] #removes item if taken
                 else:
                     #tell them they can't get it
-                    print('Can\'t get ' + next_action[1] + '!')
+                    print("\033[1;31;11mCan't get that\033[0;0m " + next_action[1] + "\033[1;31;11m!\033[0;0m")
             
-        ## If a player enters a room with a monster
+        #LOSS condition if monster 'item' is in the current room
             if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
                 print("")
                 print('A monster emerges and drags you off into the darkness... \n\033[1;31;11m      GAMEOVER!!! \033[0;0m')
                 playAgain()
-                clear20() 
-                
-            ## Define how a player can win
-            if currentRoom == 'Back Room' and 'key' in inventory and 'potion' in inventory:
-                print('You throw the magic potion at the wall to reveal a hidden locked door. You use the key and escape the house... YOU WIN!')
-                playAgain()
-                clear20() 
-        
+                clear25() 
             if currentRoom == 'Cellar' :
                 print("The ladder breaks as you start to climb down.")
                 print("You fall flat on your face!")
                 print("There is a growling noise...and SNAP!!! A creature clamps on to your leg and drags you deep into the cellar. It's over for you... GG!")
                 playAgain()
-                clear20() 
+                clear25()        
+         #WIN condtions
+            if currentRoom == 'Back Room' and 'key' in inventory and 'potion' in inventory:
+                print('\033[1;34;11mYou throw the magic potion at the wall to reveal a hidden locked door. You use the key to break free...\033[0;0m \033[1;32;11mWinner Winner, Chicken Dinner!\033[0;0m')
+                playAgain()
+                clear25() 
+        
+           
                 
 if __name__ =='__main__':
        main()   
