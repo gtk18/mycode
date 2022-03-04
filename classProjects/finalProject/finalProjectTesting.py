@@ -51,12 +51,12 @@ def main():
             # currentRoom = 'Main Room'
             # print("Would you like to play again?")
             while True:
-                playerAction = input("Do you dare to try again? Yes/No? >>>")
+                playerAction = input("\033[1;33;11mDo you dare to try again? Yes/No? >>>\033[0;0m")
             # playerAction = input("Would you like to play again? >>>")
             # while True:
                 if playerAction.lower() == "yes" :
                         # showInstructions()
-                        print('here we go')
+                        print('Herrreee we go!!!')
                         main()
                 if playerAction.lower().strip() != "yes": #does not matter how yes is typed or white spaces
                         clear25()
@@ -128,6 +128,7 @@ def main():
 #                   'Upstairs Hallway' : { 
 #                         'downstairs' : 'Main Room'
 #                         'east': 'Main Bedroom'
+#                         'east' : 
 #                       },
 #                   'Main Bedroom' : { 
 #                        'east' : 'upstairs hallway'
@@ -175,11 +176,10 @@ def main():
             showStatus()      
             #get the player's next 'next_action'
             #.split() breaks it up into an list array
-            #eg typing 'go east' would give the list:
-            #['go','east']
+            #for example, 'go east' would give the list:['go','east']
             next_action = ''
             while next_action == '':  
-                next_action = input('What do you want to do now? >')
+                next_action = input('\033[1;33;11mHow does thou wish to proceed? >>>\033[0;0m')
                 clear25()
                              
             next_action = next_action.lower().split(" ", 1) # delimiter here is a space, and a max split of 1
