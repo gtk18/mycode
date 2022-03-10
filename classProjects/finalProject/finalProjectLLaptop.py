@@ -64,49 +64,6 @@ def main():
 #     ### user_input = input("What would you like to do? Game or Research?")
 #     ### if user_input = "Game"
 # =============================================================================
-        
-# while True: #while condition is true, runs while loop
-        # os.system('cls')
-        # os.system('clear')
-        # showRules() 
-        # time.sleep(5)
-# =============================================================================
-#         def showInstructions(): #defining function
-#             print('''
-#             Text-Based Adventure Game
-#             ========
-#             Commands:
-#               go [direction]    example: go west
-#               get [item]        example: get item
-#             ''')
-#         time.sleep(1)    
-#         showInstructions()        
-# =============================================================================
-# =============================================================================
-#             # sys.stdout.write('Lets test how fast this types')
-#             # sys.stdout.flush()
-#             # openingString = "Lets see how slow these words print"
-#             # for word in openingString.split():
-#             #         print(word, end = ' ')
-#             #         time.sleep(.5)
-# =============================================================================
-# =============================================================================
-#         def endGame():
-#             while True:
-#                 sys.out()
-# =============================================================================
-# =============================================================================
-#         def clrscr():
-#             "testing the os clear screen method..."
-#     # Check if Operating System is Mac and Linux or Windows
-#             if os.name == 'posix':
-#                 _ = os.system('clear')
-#             else:
-#       # Else Operating System is Windows (os.name = nt)
-#                 _ = os.system('cls')
-#     
-#             print("Screen Cleared")
-#         clrscr()    
 # =============================================================================
         def gameOver1():  #GAMEOVER BANNER TO BE PRINTED when called
             gameover =  ('''
@@ -141,12 +98,13 @@ def main():
                     for i in range(5,0,-1):
                         print(i)
                         time.sleep(1)
+                    print()
                     main()
                     
                 if playerAction.lower().strip() == "y" :
                     clear25()
                     print("Let's roll out!!!")
-                    time.sleep(2)
+                    time.sleep(1)
                     for i in range (5,0,-1):#lets do a count down...
                         print(i)
                         time.sleep(1) 
@@ -177,15 +135,15 @@ def main():
             if currentRoom == 'West Room':
                 print("The room is rather empty.")
                 print("But after scanning some time...you notice a cellar door on the floor in the corner...")
-                print("You can do down or east.")
+                print("You can do \033[6;35;11mdown,east\033[0;0m.")
             if currentRoom == 'Kitchen' : 
                 print("You have made a grave mistake...")
             if currentRoom == 'Laboratory' : 
                 print("This place looks like some sort of lab.")
-                print("You can go west or south.")
+                print("You can go \033[6;35;11mwest, south\033[0;0m.")
             if currentRoom == 'Back Room':
                 print("This looks like a dead end, but almost as if one of the walls should have a door...")
-                print("You can only go north.")
+                print("You can only go \033[6;35;11mnorth\033[0;0m.")
 #*****************************************************
 # =============================================================================
 #             #UPSTAIRS FLOOR
@@ -332,9 +290,10 @@ def main():
                     #add the item to their inventory
                     inventory += [next_action[1]]
                     if next_action[1] == 'key':   #if item picked up is key, will print the next message...
+                        print()
                         print("\033[1;36;11mThe key glows as you pick it up... \033[0;0m") #prints in light blue
                     if next_action[1] == 'potion': #if second attribute is called this
-                        print("*************")
+                        print(" *************")
                         # print("\033[1;36;11m The potion shakes in your hand and mysteriously starts to fill on it's own... \033[0;0m")
                         potionStory = "\033[1;36;11m The potion shakes in your hand and mysteriously starts to fill on it's own... \033[0;0m"
                         for word in potionStory.split(): #splits the string into separate items
@@ -349,7 +308,7 @@ def main():
                 #otherwise, if the item isn't there to get
                 elif 'item2' in rooms[currentRoom] and next_action[1] in rooms[currentRoom]['item2']:
                     inventory += [next_action[1]]
-                    print(next_action[1] + 'taken!')
+                    print(next_action[1] + ' taken!')
                     del rooms[currentRoom]['item2'] #removes item from room dictionary if taken
                 else:
                     #tell them they can't get it
@@ -389,9 +348,17 @@ def main():
                 gameOver1()
                 playAgain()
                 # clear25()        
-         #WIN condtions
+# =============================================================================
+#          #WIN condtions
+# =============================================================================
             if currentRoom == 'Back Room' and 'key' in inventory and 'potion' in inventory:
-                print('\033[1;34;11mYou throw the magic potion at the wall to reveal a hidden locked door. You use the key to break free...\033[0;0m \033[1;32;11mWinner Winner, Chicken Dinner!\033[0;0m')
+                print()
+                showStatus()
+                time.sleep(2)
+                print("You turn towards the wall that looks like there's more to it.")
+                time.sleep(2)
+               
+                print('\033[1;34;11m***The potion starts to shake rapidly in your hand*** \n You throw the magic potion at the wall to reveal a hidden locked door. You then use the key to break free...\033[0;0m \033[1;32;11mWinner Winner, Chicken Dinner!\033[0;0m')
                 playAgain()
                 clear25() 
         
@@ -400,3 +367,47 @@ def main():
 if __name__ =='__main__':
        main()   
 
+
+
+#         def clrscr():
+#             "testing the os clear screen method..."
+#     # Check if Operating System is Mac and Linux or Windows
+#             if os.name == 'posix':
+#                 _ = os.system('clear')
+#             else:
+#       # Else Operating System is Windows (os.name = nt)
+#                 _ = os.system('cls')
+#     
+#             print("Screen Cleared")
+#         clrscr()    
+ # while True: #while condition is true, runs while loop
+        # os.system('cls')
+        # os.system('clear')
+        # showRules() 
+        # time.sleep(5)
+# =============================================================================
+#         def showInstructions(): #defining function
+#             print('''
+#             Text-Based Adventure Game
+#             ========
+#             Commands:
+#               go [direction]    example: go west
+#               get [item]        example: get item
+#             ''')
+#         time.sleep(1)    
+#         showInstructions()        
+# =============================================================================
+# =============================================================================
+#             # sys.stdout.write('Lets test how fast this types')
+#             # sys.stdout.flush()
+#             # openingString = "Lets see how slow these words print"
+#             # for word in openingString.split():
+#             #         print(word, end = ' ')
+#             #         time.sleep(.5)
+# =============================================================================
+# =============================================================================
+#         def endGame():
+#             while True:
+#                 sys.out()
+# =============================================================================
+# =====================================================
