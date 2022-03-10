@@ -315,16 +315,17 @@ def main():
                 clear25()
             next_action = next_action.lower().split(" ", 1) # delimiter here is a space, and a max split of 1
             
-            if next_action[0] == 'quit': #can type quit to exit game
-                sys.exit()
+           
                 
             if next_action[0] == 'go': #if they type 'go' as their first action
                 if next_action[1] in rooms[currentRoom]: #check that they are allowed wherever they want to go
                     #set the current room to the new room
                     currentRoom = rooms[currentRoom][next_action[1]]
                     print("")
-           
-                    
+                else:
+                    print('That is not an option!') #there is no door (link) to the new room   
+                  
+                
             if next_action[0] == 'get' :    #if they type 'get' first, does 
                 #if the room contains an item, and the item is the one they want to get
                 if "item" in rooms[currentRoom] and next_action[1] in rooms[currentRoom]['item']:
@@ -353,10 +354,10 @@ def main():
                 else:
                     #tell them they can't get it
                     print("\033[1;31;11mCan't get that\033[0;0m " + next_action[1] + "\033[1;31;11m!\033[0;0m")
-            else:
-                print('That is not an option!') #there is no door (link) to the new room    
-            if next_action[0] == 'fight':
-                pass
+            if next_action[0] == 'quit': #can type quit to exit game
+                sys.exit()
+            # if next_action[0] == 'fight':
+            #     pass
 # =============================================================================
 #         #LOSS condition if monster 'item' is in the current room
 # =============================================================================
